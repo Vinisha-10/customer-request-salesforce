@@ -1,0 +1,21 @@
+<template>
+    <lightning-card
+        title="Submitted Customer Requests"
+        icon-name="standard:case">
+
+        <template if:true={requests.data}>
+            <lightning-datatable
+                key-field="Id"
+                data={requests.data}
+                columns={columns}>
+            </lightning-datatable>
+        </template>
+
+        <template if:true={requests.error}>
+            <p class="slds-p-around_medium">
+                Unable to load customer requests.
+            </p>
+        </template>
+
+    </lightning-card>
+</template>

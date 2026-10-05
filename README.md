@@ -85,7 +85,13 @@ The system addresses this by:
       └───────────────────┘
 
 
-      ⚙️ Salesforce Components
+
+
+
+
+⚙️ Salesforce Components
+
+
 1. Custom Object
 
 Created a custom object:
@@ -108,6 +114,10 @@ Priority Values
 Low
 Medium
 High
+
+
+
+
 2. Validation Rule
 
 A validation rule prevents a request from being submitted without an email address.
@@ -122,6 +132,8 @@ Business Rule
 If the request status is Submitted, an email address must be provided.
 
 This ensures basic data quality before the request enters the submitted workflow.
+
+
 
 3. Record-Triggered Flow
 
@@ -144,6 +156,8 @@ Priority: Normal
 
 This demonstrates the use of Salesforce declarative automation for business processes that do not require custom Apex.
 
+
+
 4. Apex Service Class
 
 The CustomerRequestService Apex class retrieves submitted customer requests using SOQL.
@@ -161,6 +175,7 @@ public static List<Customer_Request__c> getSubmittedRequests() {
 
     return requests;
 }
+
 Key Concepts
 Apex class
 SOQL
@@ -168,6 +183,10 @@ SOQL
 cacheable=true
 List collections
 LWC-Apex integration
+
+
+
+
 5. Apex Trigger
 
 A before insert trigger automatically assigns Medium priority when no priority has been specified.
@@ -195,6 +214,8 @@ SOQL inside loops
 DML inside loops
 
 This keeps the trigger bulk-safe.
+
+
 
 6. Lightning Web Component
 
@@ -239,6 +260,9 @@ Result
 3/3 test methods passed successfully.
 
 The tests cover both the Apex service and trigger behavior.
+
+
+
 
 ## 📸 Application Screenshots
 
@@ -358,8 +382,4 @@ Vinisha Singh
 
 B.Tech — Information Technology
 
-<<<<<<< HEAD
 Salesforce Developer Portfolio Project
-=======
-Salesforce Developer Portfolio Project
->>>>>>> 47a7ee0 (Add project screenshots and improve README)

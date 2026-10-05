@@ -1,58 +1,366 @@
-# Salesforce DX Project
+# Customer Request Management System
 
-Salesforce DX is a development approach that brings source-driven development, team collaboration, and continuous integration to the Salesforce Platform. Instead of working directly in an org through a web browser, you work with metadata as source files in a local DX project, track changes in version control, and deploy through automated processes.
+### Salesforce CRM application for managing customer requests, automating follow-ups, and maintaining data quality.
 
-This project template gets you started with the tools and structure you need to build Salesforce applications using source control, scratch orgs, and the Salesforce CLI.
+[![Salesforce](https://img.shields.io/badge/Salesforce-CRM-00A1E0?logo=salesforce&logoColor=white)](https://www.salesforce.com/)
+[![Apex](https://img.shields.io/badge/Apex-Backend-1798C1)](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/)
+[![LWC](https://img.shields.io/badge/LWC-Frontend-0176D3)](https://developer.salesforce.com/docs/platform/lwc/overview)
+[![SOQL](https://img.shields.io/badge/SOQL-Data%20Querying-032D60)](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/)
 
-## Prerequisites
+---
 
-Before you start, make sure you have:
+##  Project Overview
 
-- **Salesforce CLI** - Download from [developer.salesforce.com/tools/salesforcecli](https://developer.salesforce.com/tools/salesforcecli). See [Install Salesforce CLI](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm) for details.
-- **VS Code with Salesforce Extension Pack** - See [Installation Instructions](https://developer.salesforce.com/docs/platform/sfvscode-extensions/guide/install.html) for details. Includes the Agentforce Vibes extension.
-- **A development org** - Sign up for a free Developer Edition org [here](https://developer.salesforce.com/signup).
-- **Dev Hub enabled** (optional, required to create scratch orgs) - You can enable Dev Hub in your development org under Setup > Dev Hub.  See [Provide Developers Access to Salesforce DX Tools](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_setup_dx_tools.htm).
+The **Customer Request Management System** is a Salesforce application designed to manage customer requests through a structured CRM workflow.
 
-## Project Structure
+The project combines **Salesforce declarative automation** with **programmatic development** to validate customer data, automate follow-up activities, apply business logic, and provide a custom Lightning Web Component for viewing submitted requests.
 
-Your DX project follows this structure:
+This project demonstrates practical experience with **Apex, SOQL, Triggers, Lightning Web Components, Flows, Validation Rules, Custom Objects, and Apex Testing**.
 
-- **`force-app/main/default/`** - Your metadata source files live in this default package directory. You can configure additional package directories in the `sfdx-project.json` file.
-- **`config/`** - Scratch org definitions and project settings
-- **`scripts/`** - Automation scripts for common tasks
-- **`sfdx-project.json`** - Project manifest that defines package directories, namespace, API version, and other project-level settings
+---
 
-See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm).
+##  Problem Statement
 
-## Get Started
+Customer requests need to be captured consistently, validated before submission, assigned an appropriate priority, and followed up automatically.
 
-Ready to start developing? The [Get Started with Salesforce DX](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_get_started_dx.htm) guide walks you through your first project, from creating a scratch org to creating a simple Apex class or LWC to deploying your code to a sandbox.
+The system addresses this by:
 
-## Common Salesforce CLI Commands
+- Capturing customer request information
+- Validating required information
+- Automatically assigning a default priority
+- Creating follow-up tasks
+- Providing a custom interface for viewing submitted requests
+- Testing the backend logic using Apex test classes
 
-Here are common CLI commands that you'll use the most:
+---
 
-- `sf org login web`: Authorize an org
-- `sf org open`: Open your org in a browser
-- `sf org create scratch`: Create a scratch org
-- `sf project deploy start`: Deploy metadata to your org
-- `sf project retrieve start`: Retrieve metadata from your org
-- `sf template generate <artifact>`: Scaffold new components, such as Apex classes and triggers, LWC components, Lightning apps, and more
-- `sf apex <command>`: Run Apex tests, run anonymous Apex blocks, and view logs
-- `sf data <command>`: Work with test data
-- `sf alias <command>`: Manage org aliases
-- `sf config <command>`: Configure CLI settings
+##  Key Features
 
-## Use Agentforce Vibes to Build Lightning Apps
+| Feature | Implementation |
+|---|---|
+| Customer Request Management | Custom Salesforce Object |
+| Data Validation | Validation Rule |
+| Automated Follow-up | Record-Triggered Flow |
+| Default Priority Assignment | Apex Trigger |
+| Request Retrieval | Apex + SOQL |
+| Custom User Interface | Lightning Web Component |
+| Backend Testing | Apex Test Class |
+| Request Display | Lightning Datatable |
 
-Transform your ideas into custom Lightning apps that extend CRM workflows directly in Lightning Experience. Through natural conversations with Agentforce Vibes, implement custom objects and fields, complex business logic, and dynamic UI components. See [Build a Lightning App Using Agentforce Vibes](https://developer.salesforce.com/docs/platform/einstein-for-devs/guide/lexapp-overview.html).
+---
 
-## Additional Resources
+## Salesforce Architecture
 
-- [Agentforce Vibes Developer Guide](https://developer.salesforce.com/docs/platform/einstein-for-devs/guide/einstein-overview.html)
-- [Salesforce CLI Installation Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/)
-- [Salesforce CLI Plugin Development Guide](https://developer.salesforce.com/docs/platform/salesforce-cli-plugin/guide/conceptual-overview.html)
-- [Salesforce VS Code Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
+```text
+                    ┌──────────────────────┐
+                    │   Customer Request   │
+                    │    Custom Object     │
+                    └──────────┬───────────┘
+                               │
+              ┌────────────────┼────────────────┐
+              │                │                │
+              ▼                ▼                ▼
+       Validation Rule    Apex Trigger     Record-Triggered
+              │                │                Flow
+              │                │                │
+              │                ▼                ▼
+              │        Default Priority     Follow-up Task
+              │
+              ▼
+       Valid Request
+              │
+              ▼
+       Submitted Request
+              │
+              ▼
+      ┌───────────────────┐
+      │   Apex Service    │
+      │   + SOQL Query    │
+      └─────────┬─────────┘
+                │
+                ▼
+      ┌───────────────────┐
+      │        LWC        │
+      │ Lightning Datatable│
+      └───────────────────┘
 
+
+      ⚙️ Salesforce Components
+1. Custom Object
+
+Created a custom object:
+
+Customer_Request__c
+
+Fields
+Field	API Name	Type
+Customer Name	Customer_Name__c	Text
+Email	Email__c	Email
+Status	Status__c	Picklist
+Priority	Priority__c	Picklist
+Status Values
+New
+Submitted
+In Progress
+Completed
+Rejected
+Priority Values
+Low
+Medium
+High
+2. Validation Rule
+
+A validation rule prevents a request from being submitted without an email address.
+
+Logic
+AND(
+    ISPICKVAL(Status__c, "Submitted"),
+    ISBLANK(Email__c)
+)
+Business Rule
+
+If the request status is Submitted, an email address must be provided.
+
+This ensures basic data quality before the request enters the submitted workflow.
+
+3. Record-Triggered Flow
+
+A Record-Triggered Flow runs when a Customer Request is submitted.
+
+Workflow
+Customer Request
+       ↓
+Status = Submitted
+       ↓
+Record-Triggered Flow
+       ↓
+Create Follow-up Task
+
+The Flow creates a Task with:
+
+Subject: Follow up with customer request
+Status: Not Started
+Priority: Normal
+
+This demonstrates the use of Salesforce declarative automation for business processes that do not require custom Apex.
+
+4. Apex Service Class
+
+The CustomerRequestService Apex class retrieves submitted customer requests using SOQL.
+
+@AuraEnabled(cacheable=true)
+public static List<Customer_Request__c> getSubmittedRequests() {
+
+    List<Customer_Request__c> requests = [
+        SELECT Id, Name, Customer_Name__c,
+               Email__c, Status__c, Priority__c
+        FROM Customer_Request__c
+        WHERE Status__c = 'Submitted'
+        ORDER BY CreatedDate DESC
+    ];
+
+    return requests;
+}
+Key Concepts
+Apex class
+SOQL
+@AuraEnabled
+cacheable=true
+List collections
+LWC-Apex integration
+5. Apex Trigger
+
+A before insert trigger automatically assigns Medium priority when no priority has been specified.
+
+trigger CustomerRequestTrigger on Customer_Request__c (before insert) {
+
+    for (Customer_Request__c request : Trigger.new) {
+
+        if (String.isBlank(request.Priority__c)) {
+            request.Priority__c = 'Medium';
+        }
+    }
+}
+Why before insert?
+
+The record's field value can be modified before Salesforce saves the record, so no additional DML operation is required.
+
+Bulkification
+
+The trigger processes Trigger.new, which can contain multiple records in a single transaction.
+
+The implementation also avoids:
+
+SOQL inside loops
+DML inside loops
+
+This keeps the trigger bulk-safe.
+
+6. Lightning Web Component
+
+The customerRequestList LWC provides a custom interface for viewing submitted requests.
+
+Displayed Information
+Request Number
+Customer Name
+Email
+Status
+Priority
+
+The component retrieves data from Apex using the @wire decorator:
+
+@wire(getSubmittedRequests)
+requests;
+
+The results are displayed using:
+
+lightning-datatable
+
+This demonstrates communication between:
+
+LWC
+ ↓
+Apex
+ ↓
+SOQL
+ ↓
+Salesforce Database
+🧪 Apex Testing
+
+An Apex test class was created to verify the application's backend logic.
+
+Test Cases
+Test	Expected Result
+Submitted requests retrieval	Correct records returned
+Blank priority	Automatically becomes Medium
+Existing High priority	Remains High
+Result
+
+3/3 test methods passed successfully.
+
+The tests cover both the Apex service and trigger behavior.
+
+📸 Application Screenshots
+Customer Request Record
+
+Add screenshot here showing the Customer Request record and its fields.
+
+Validation Rule
+
+Add screenshot here showing the validation error when Email is blank and Status is Submitted.
+
+Automated Follow-up Flow
+
+Add screenshot here showing the Record-Triggered Flow.
+
+Lightning Web Component
+
+Add screenshot here showing the Submitted Customer Requests datatable.
+
+Apex Test Results
+
+Add screenshot here showing the successful Apex test results.
+
+📂 Project Structure
+CustomerRequestProject/
+│
+├── force-app/
+│   └── main/
+│       └── default/
+│           │
+│           ├── classes/
+│           │   ├── CustomerRequestService.cls
+│           │   └── CustomerRequestServiceTest.cls
+│           │
+│           ├── flows/
+│           │   └── Customer_Request_Create_Follow_Up_Task.flow-meta.xml
+│           │
+│           ├── lwc/
+│           │   └── customerRequestList/
+│           │       ├── customerRequestList.html
+│           │       ├── customerRequestList.js
+│           │       └── customerRequestList.js-meta.xml
+│           │
+│           ├── objects/
+│           │   └── Customer_Request__c/
+│           │
+│           └── triggers/
+│               └── CustomerRequestTrigger.trigger
+│
+├── config/
+├── scripts/
+├── sfdx-project.json
+└── README.md
+
+
+ Tech Stack
+
+Platform
+
+Salesforce
+
+Backend
+
+Apex
+SOQL
+Apex Triggers
+
+Frontend
+
+Lightning Web Components
+Lightning Datatable
+
+Automation
+
+Record-Triggered Flow
+Validation Rules
+
+Development Tools
+
+Salesforce CLI
+Visual Studio Code
+Salesforce Extension Pack
+Git & GitHub
+
+
+
+ Key Salesforce Concepts Demonstrated
+Salesforce Data Model
+Custom Objects
+Custom Fields
+Picklists
+Validation Rules
+Record-Triggered Flows
+Apex Classes
+SOQL
+Apex Triggers
+Trigger Context Variables
+Bulkification
+@AuraEnabled
+@wire
+Lightning Web Components
+Lightning Datatable
+Apex Test Classes
+Salesforce Metadata
+Git Version Control
+
+
+
+Future Enhancements
+
+Potential improvements include:
+
+ Search and filter functionality in the LWC
+ Salesforce dashboard for request analytics
+ Automated email notifications
+ Role-based access and sharing rules
+ Pagination for large datasets
+ Record update functionality directly from the LWC
+ Request status and priority analytics
+
+ Author
+Vinisha Singh
+
+B.Tech — Information Technology
+
+Salesforce Developer Portfolio Project

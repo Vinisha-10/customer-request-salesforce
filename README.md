@@ -240,26 +240,21 @@ Result
 
 The tests cover both the Apex service and trigger behavior.
 
-📸 Application Screenshots
-Customer Request Record
+## 📸 Application Screenshots
 
-Add screenshot here showing the Customer Request record and its fields.
+### Customer Request Record & Automated Follow-up
 
-Validation Rule
+The Customer Request record shows the submitted request details along with the automatically created follow-up Task.
 
-Add screenshot here showing the validation error when Email is blank and Status is Submitted.
+![Customer Request Record](screenshots/customer-request-record.png)
 
-Automated Follow-up Flow
+### Lightning Web Component
 
-Add screenshot here showing the Record-Triggered Flow.
+The custom LWC displays submitted customer requests using a Lightning Datatable.
 
-Lightning Web Component
+![Submitted Customer Requests](screenshots/lwc-submitted-requests.png)
 
-Add screenshot here showing the Submitted Customer Requests datatable.
 
-Apex Test Results
-
-Add screenshot here showing the successful Apex test results.
 
 📂 Project Structure
 CustomerRequestProject/
@@ -363,4 +358,8 @@ Vinisha Singh
 
 B.Tech — Information Technology
 
+<<<<<<< HEAD
 Salesforce Developer Portfolio Project
+=======
+Salesforce Developer Portfolio Project
+>>>>>>> 47a7ee0 (Add project screenshots and improve README)
